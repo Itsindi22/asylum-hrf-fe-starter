@@ -8,7 +8,8 @@ body {
 }
 
 .primary-c {
-    @apply bg-[#666555]
+    @apply bg-[#666555];
+    
 }
 
 .secondary-c {

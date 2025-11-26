@@ -26,7 +26,7 @@ export default function Header() {
         </NavLink>
         {isAuthenticated && (
           <NavLink to='/profile' className='nav-btn'>
-            Profile
+            d
           </NavLink>
         )}
         <LoggingButtons />
