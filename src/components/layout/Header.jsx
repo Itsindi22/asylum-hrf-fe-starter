@@ -11,13 +11,13 @@ export default function Header() {
   const isAuthenticated = false;
 
   return (
-    <header className='flex w-[100%] primary-c justify-between px-14'>
-      <div className='flex justify-between'>
+    <header className='flex w-[100%] bg-[#84836e] justify-between px-14'>
+      <div className='flex justify-between' justify-center>
         <NavLink to='https://www.humanrightsfirst.org/'>
           <img className='w-[100px]' src={Logo} alt='HRF logo white' />
         </NavLink>
       </div>
-      <div className='flex items-center py-4 gap-16'>
+      <div className='flex items-center py-6 gap-16'>
         <NavLink to='/' className='nav-btn'>
           Home
         </NavLink>
