@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 /**
  * TODO: Ticket 3:
  * Implement authentication and logging functionality using Auth0

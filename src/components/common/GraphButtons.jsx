@@ -1,8 +1,12 @@
+import axios from 'axios';
 import { useAppContext } from '../../context/AppContext.jsx';
 import { mapTypes } from '../pages/DataVisualizations/getMapView.jsx';
 
 const { ScatterPlot, ChoroplethMap, HeatMap } = mapTypes;
-
+const httpClient = axios.create ({
+  baseURL: 'https://asylum-be.onrender.com',
+  headers:{'content-Type': 'application/json'} // Replace with your actual API base URL
+})
 export const GraphButtons = ({ mapView, setMapView }) => {
   const { updateQuery, clearQuery } = useAppContext();
 

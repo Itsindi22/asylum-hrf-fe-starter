@@ -7,7 +7,7 @@ export const pageWrapper = ele => {
     <>
       <Header />
       
-      <div className="flex justify-start">{ele} </div>
+      <div className="flex justify-start ">{ele} </div>
       <Footer />
     </>
   );

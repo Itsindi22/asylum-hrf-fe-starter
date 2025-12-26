@@ -17,31 +17,74 @@ const useAppContextProvider = () => {
 
   useLocalStorage({ graphData, setGraphData });
 
-  const getFiscalData = () => {
+  const api = axios.create({
+    baseURL: 'https://asylum-be.onrender.com',
+    timeout: 60000, // helps with Render cold starts
+  });
+
+  const getFiscalData = async () => {
     // TODO: Replace this with functionality to retrieve the data from the fiscalSummary endpoint
-    const fiscalDataRes = testData;
-    return fiscalDataRes;
+    const fiscalDataRes = await api.get('/fiscalSummary');
+    return fiscalDataRes.data;
   };
 
   const getCitizenshipResults = async () => {
     // TODO: Replace this with functionality to retrieve the data from the citizenshipSummary endpoint
-    const citizenshipRes = testData.citizenshipResults;
-    return citizenshipRes;
+    const citizenshipRes = await api.get('/citizenshipSummary');
+    return citizenshipRes.data;
+  };
+
+  // normalize in case API returns array OR wrapped object
+  const normalizeYearResults = (data) => {
+    if (Array.isArray(data)) return data;
+    if (data && Array.isArray(data.yearResults)) return data.yearResults;
+    return [];
+  };
+
+  const normalizeCitizenshipResults = (data) => {
+    if (Array.isArray(data)) return data;
+    if (data && Array.isArray(data.citizenshipResults)) return data.citizenshipResults;
+    return [];
   };
 
   const updateQuery = async () => {
     setIsDataLoading(true);
+    await fetchData();
   };
 
   const fetchData = async () => {
     // TODO: fetch all the required data and set it to the graphData state
+    try {
+      const [yearRaw, citizenshipRaw] = await Promise.all([
+        getFiscalData(),
+        getCitizenshipResults(),
+      ]);
+
+      const yearResults = normalizeYearResults(yearRaw);
+      const citizenshipResults = normalizeCitizenshipResults(citizenshipRaw);
+
+      setGraphData({
+        yearResults,
+        citizenshipResults,
+      });
+    } catch (err) {
+      console.error('Error fetching graph data:', err);
+      // keep the same shape so graphs don't crash
+      setGraphData({
+        yearResults: [],
+        citizenshipResults: [],
+      });
+    } finally {
+      setIsDataLoading(false);
+    }
   };
 
   const clearQuery = () => {
     setGraphData({});
   };
 
-  const getYears = () => graphData?.yearResults?.map(({ fiscal_year }) => Number(fiscal_year)) ?? [];
+  const getYears =
+    () => graphData?.yearResults?.map(({ fiscal_year }) => Number(fiscal_year)) ?? [];
 
   useEffect(() => {
     if (isDataLoading) {

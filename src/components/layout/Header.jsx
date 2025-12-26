@@ -11,7 +11,9 @@ export default function Header() {
   const isAuthenticated = false;
 
   return (
-    <header className='flex w-[100%] bg-[#84836e] justify-between px-14'>
+
+
+    <header className='flex w-[100%] bg-[#666555]  justify-between px-14  text-amber-50'>
       <div className='flex justify-between' justify-center>
         <NavLink to='https://www.humanrightsfirst.org/'>
           <img className='w-[100px]' src={Logo} alt='HRF logo white' />
