@@ -16,10 +16,10 @@ import { Auth0Provider } from '@auth0/auth0-react';
 createRoot(document.getElementById('root')).render(
     <ProvideAppContext>
       <Auth0Provider 
-        domain={"http://localhost:5173/"}
+        domain={"asylumlabproject.us.auth0.com"}
         clientId={"6DU1zc7rexZNgfIiMyr2QISD5eQq407C"}
         authorizationParams={{redirect_uri: window.location.origin}}
-      >
+      > 
         <App />
       </Auth0Provider>
     </ProvideAppContext>

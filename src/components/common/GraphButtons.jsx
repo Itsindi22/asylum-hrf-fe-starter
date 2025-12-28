@@ -19,7 +19,7 @@ export const GraphButtons = ({ mapView, setMapView }) => {
         <button className='heat-map bg-white p-1 text-black border-2' disabled={mapView === HeatMap} onClick={() => setMapView(HeatMap)}>
           USCIS Asylum Offices Heat Map
         </button>
-        <button className='choropleth-map bg-white p-1 text-black border-2 flx' disabled={mapView === ChoroplethMap} onClick={() => setMapView(ChoroplethMap)}>
+        <button className='choropleth-map bg-white p-1 text-black border-2' disabled={mapView === ChoroplethMap} onClick={() => setMapView(ChoroplethMap)}>
           Citizenship of Asylum Seeker
         </button>
       </section>
