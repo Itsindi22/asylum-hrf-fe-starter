@@ -58,7 +58,6 @@ const useAppContextProvider = () => {
       const yearResults = normalizeYearResults(yearRaw);
       const citizenshipResults = normalizeCitizenshipResults(citizenshipRaw);
 
-      // ✅ Store data in the same shape your graphs expect
       setGraphData({
         yearResults,
         citizenshipResults,
@@ -66,7 +65,6 @@ const useAppContextProvider = () => {
     } catch (err) {
       console.error('Error fetching graph data:', err);
 
-      // ✅ Keep the same shape so graphs don't crash
       setGraphData({
         yearResults: [],
         citizenshipResults: [],
@@ -81,7 +79,6 @@ const useAppContextProvider = () => {
   };
 
   const clearQuery = () => {
-    // ✅ Reset to empty shape (or you could set back to testData if you prefer)
     setGraphData({
       yearResults: [],
       citizenshipResults: [],
