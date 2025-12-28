@@ -34,7 +34,7 @@ const useAppContextProvider = () => {
     return citizenshipRes.data;
   };
 
-  // normalize in case API returns array OR wrapped object
+  // ✅ Helpers to keep your app working even if the API returns slightly different shapes
   const normalizeYearResults = (data) => {
     if (Array.isArray(data)) return data;
     if (data && Array.isArray(data.yearResults)) return data.yearResults;
@@ -45,11 +45,6 @@ const useAppContextProvider = () => {
     if (Array.isArray(data)) return data;
     if (data && Array.isArray(data.citizenshipResults)) return data.citizenshipResults;
     return [];
-  };
-
-  const updateQuery = async () => {
-    setIsDataLoading(true);
-    await fetchData();
   };
 
   const fetchData = async () => {
@@ -63,13 +58,15 @@ const useAppContextProvider = () => {
       const yearResults = normalizeYearResults(yearRaw);
       const citizenshipResults = normalizeCitizenshipResults(citizenshipRaw);
 
+      // ✅ Store data in the same shape your graphs expect
       setGraphData({
         yearResults,
         citizenshipResults,
       });
     } catch (err) {
       console.error('Error fetching graph data:', err);
-      // keep the same shape so graphs don't crash
+
+      // ✅ Keep the same shape so graphs don't crash
       setGraphData({
         yearResults: [],
         citizenshipResults: [],
@@ -79,8 +76,16 @@ const useAppContextProvider = () => {
     }
   };
 
+  const updateQuery = async () => {
+    setIsDataLoading(true);
+  };
+
   const clearQuery = () => {
-    setGraphData({});
+    // ✅ Reset to empty shape (or you could set back to testData if you prefer)
+    setGraphData({
+      yearResults: [],
+      citizenshipResults: [],
+    });
   };
 
   const getYears =

@@ -3,9 +3,11 @@ import lineGraph from "../../../assets/line-graph.png";
 import barGraph from "../../../assets/bar-graph.png";
 import paperStack from "../../../assets/paper-stack.jpg";
 import { useDownloadData } from "../../../hooks/useDownloadData.js";
+import { useNavigate } from "react-router-dom";
 
 export const LandingPage = () => {
   const { downloadCSV } = useDownloadData();
+  const navigate = useNavigate();
 
   const scrollToTop = () => {
     let scrollStep = -window.scrollY / 20;
@@ -19,23 +21,18 @@ export const LandingPage = () => {
     <div className="font-serif w-full min-h-screen text-center bg-white">
       {/* HEADER / HERO (olive) */}
       <header className="w-full bg-[#666555] text-white">
-        {/* top nav row */}
-        <div className="mx-auto max-w-6xl px-8 py-4 flex items-start justify-between">
-          {/* logo (text version to match screenshot) */}
-          <div className="leading-[1.05] text-left text-[12px] opacity-95">
-
-          </div>
-
-         
+      
+        <div className="mx-auto max-w-1xl  py-4 flex items-start justify-between">
+          
         </div>
 
         {/* title + subtitle */}
         <section className="pb-9 pt-1">
-          <h1 className="text-6xl leading-tight">
+          <h1 className="text-6xl ">
             Asylum Office Grant Rate Tracker
           </h1>
 
-          <p className="mx-auto mt-6 max-w-5xl text-[px] leading-5 opacity-95">
+          <p className="mx-auto mt-6 max-w-5xl text-1xl leading-5 opacity-95">
             The Asylum Office Grant Rate Tracker provides asylum seekers,
             researchers, policy makers, and the public an interactive tool to
             explore USCIS data on Asylum Office decisions
@@ -54,7 +51,7 @@ export const LandingPage = () => {
                 src={barGraph}
                 alt="Bar Graph"
               />
-              <h2 className="mt-3 text-[14px] leading-5">
+              <h2 className="mt-3 text-xl leading-5">
                 Search Grant Rates By Office
               </h2>
             </div>
@@ -66,16 +63,17 @@ export const LandingPage = () => {
                 src={pieChart}
                 alt="Pie Chart"
               />
-              <h2 className="mt-3 text-[14px] leading-5">
+              <h2 className="mt-3 text-xl leading-5">
                 Search Grant Rates By Nationality
               </h2>
-
-              <div className="mt-4 flex gap-3">
-                <button className="bg-[#aaa] px-4 py-1 text-white text-1xl shadow-sm">
-                  View the Data
-                </button>
-
-                <button
+          <div className="mt-4 flex gap-3">
+           <button
+              onClick={() => navigate('/graphs')}
+              className="bg-[#aaa] px-4 py-1 text-white text-xl shadow-sm"
+            >
+            View the Data
+          </button>
+           <button
                   onClick={downloadCSV}
                   className="bg-[#aaa] px-4 py-1 text-white text-1xl shadow-sm"
                 >
@@ -91,7 +89,7 @@ export const LandingPage = () => {
                 src={lineGraph}
                 alt="Line Graph"
               />
-              <h2 className="mt-3 text-[14px] leading-5">
+              <h2 className="mt-3 text-xl leading-5">
                 Search Grant Rates Over Time
               </h2>
             </div>
@@ -128,7 +126,7 @@ export const LandingPage = () => {
         <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
           <div className="flex flex-col items-center">
             <div className="text-2xl text-gray-900 mb-4">36%</div>
-            <p className="text-[11px] leading-5 max-w-[260px] text-gray-800">
+            <p className="text-1xl leading-5 max text-gray-800">
               By the end of the Trump administration, the average asylum office
               grant rate had fallen 36% from an average of 44 percent in fiscal
               year 2016 to 28 percent in fiscal year 2020.
@@ -137,7 +135,7 @@ export const LandingPage = () => {
 
           <div className="flex flex-col items-center">
             <div className="text-2xl text-gray-900 mb-4">5%</div>
-            <p className="text-[11px] leading-5 max-w-[260px] text-gray-800">
+            <p className="text-1xl leading-5 max- text-gray-800">
               The New York asylum office grant rate dropped to 5 percent in fiscal
               year 2020.
             </p>
@@ -145,7 +143,7 @@ export const LandingPage = () => {
 
           <div className="flex flex-col items-center">
             <div className="text-2xl text-gray-900 mb-4">6x Lower</div>
-            <p className="text-lg leading-5 max-w-[280px] text-gray-800">
+            <p className="text-1xl leading-5 max-w-[280px] text-gray-800">
               Between fiscal year 2017 and 2020, the New York asylum office&apos;s
               average grant rate was 6 times lower than the San Francisco asylum
               office.

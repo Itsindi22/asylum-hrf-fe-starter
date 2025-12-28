@@ -4,8 +4,7 @@ import { App } from './App.jsx';
 import { ProvideAppContext } from './context/AppContext.jsx';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-const AUTH_DOMAIN = import.meta.env.VITE_AUTH_DOMAIN;
-const AUTH_CLIENT_ID = import.meta.env.VITE_AUTH_CLIENT_ID;
+
 
 /**
  * TODO: Ticket 3:
@@ -17,8 +16,8 @@ const AUTH_CLIENT_ID = import.meta.env.VITE_AUTH_CLIENT_ID;
 createRoot(document.getElementById('root')).render(
     <ProvideAppContext>
       <Auth0Provider 
-        domain={AUTH_DOMAIN}
-        clientId={AUTH_CLIENT_ID}
+        domain={"http://localhost:5173/"}
+        clientId={"6DU1zc7rexZNgfIiMyr2QISD5eQq407C"}
         authorizationParams={{redirect_uri: window.location.origin}}
       >
         <App />
